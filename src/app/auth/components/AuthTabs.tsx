@@ -1,13 +1,16 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, FC} from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { LoginForm } from "./LoginForm";
+import { SignupForm } from "./SignupForm";
 
-export default function AuthTabs() {
+
+export const AuthTabs: FC<{}> = () => {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -36,57 +39,12 @@ export default function AuthTabs() {
 
       {/* Login Form */}
       <TabsContent value="signin">
-        <form className="space-y-4 mt-4">
-          <div>
-            <label className="text-sm font-medium">Email</label>
-            <Input type="email" placeholder="you@example.com" required />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Password</label>
-            <Input type="password" placeholder="Your password" required />
-          </div>
-          <div className="flex justify-between text-sm">
-            <Link href="/auth/forgot-password" className="text-blue-500 hover:underline">
-              Forgot password?
-            </Link>
-            <button
-              type="button"
-              onClick={() => handleTabChange("signup")}
-              className="text-blue-500 hover:underline"
-            >
-              Haven&apos;t got an account? Sign up now
-            </button>
-          </div>
-          <Button type="submit" className="w-full">Login</Button>
-        </form>
+        <LoginForm />
       </TabsContent>
 
       {/* Sign Up Form */}
       <TabsContent value="signup">
-        <form className="space-y-4 mt-4">
-          <div>
-            <label className="text-sm font-medium">Name (optional)</label>
-            <Input type="text" placeholder="Your name" />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Email</label>
-            <Input type="email" placeholder="you@example.com" required />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Password</label>
-            <Input type="password" placeholder="Your password" required />
-          </div>
-          <div className="text-sm">
-            <button
-              type="button"
-              onClick={() => handleTabChange("signin")}
-              className="text-blue-500 hover:underline"
-            >
-              Already have an account? Login now
-            </button>
-          </div>
-          <Button type="submit" className="w-full">Sign Up</Button>
-        </form>
+        <SignupForm />
       </TabsContent>
     </Tabs>
   );
