@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
+import { FormEvent } from "react";
 import { FC, useState } from "react";
 
 export const SignupForm: FC<{}> = ({}) => {
@@ -42,11 +43,11 @@ export const SignupForm: FC<{}> = ({}) => {
     return <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
           <div>
             <label className="text-sm font-medium">Name (optional)</label>
-            <Input type="text" placeholder="Your name" />
+            <Input type="text" placeholder="Your name" value={name} onChange={(e: FormEvent) => {setName(e.currentTarget.value)}} />
           </div>
           <div>
             <label className="text-sm font-medium">Email</label>
-            <Input type="email" placeholder="you@example.com" required />
+            <Input type="email" placeholder="you@example.com" required value={email} onChange={(e: FormEvent) => setEmail(e.currentTarget.value)} />
           </div>
           <div>
             <label className="text-sm font-medium">Password</label>

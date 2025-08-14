@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { FC, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import { signIn } from "next-auth/react";
 
 
