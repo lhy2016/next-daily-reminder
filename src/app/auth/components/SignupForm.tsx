@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { FormEvent } from "react";
 import { FC, useState } from "react";
 
 export const SignupForm: FC<{}> = ({}) => {
@@ -42,21 +41,18 @@ export const SignupForm: FC<{}> = ({}) => {
   }
     return <form className="space-y-4 mt-4" onSubmit={handleSubmit}>
           <div>
-            <label className="text-sm font-medium">Name (optional)</label>
-            <Input type="text" placeholder="Your name" value={name} onChange={(e: FormEvent) => {setName(e.currentTarget.value)}} />
+            <label className="text-sm font-medium" htmlFor="name">Name (optional)</label>
+            <Input type="text" placeholder="Your name" id="name" value={name} onChange={(e) => setName(e.target.value)} disabled={loading} />
           </div>
           <div>
-            <label className="text-sm font-medium">Email</label>
-            <Input type="email" placeholder="you@example.com" required value={email} onChange={(e: FormEvent) => setEmail(e.currentTarget.value)} />
+            <label className="text-sm font-medium" htmlFor="email">Email</label>
+            <Input type="email" placeholder="Your Email" id="email" required value={email} onChange={(e) => setEmail(e.target.value)} disabled={loading} />
           </div>
           <div>
-            <label className="text-sm font-medium">Password</label>
-            <Input type="password" placeholder="Your password" required />
+            <label className="text-sm font-medium" htmlFor="password">Password</label>
+            <Input type="password" placeholder="Your password" id="password" required  value={password} onChange={(e) => setPassword(e.target.value)} />
           </div>
-          <div className="text-sm">
-            <Link href="/auth/signin" className="text-blue-500 hover:underline">
-              Already have an account? Login now
-            </Link>
+          <div className="text-sm">Already have an account? <Link href="/auth/signin" className="text-blue-500 hover:underline"> Login </Link> now
           </div>
           <Button type="submit" className="w-full">Sign Up</Button>
         </form>;

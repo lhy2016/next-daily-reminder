@@ -42,7 +42,7 @@ const handler = NextAuth({
     maxAge: 10 * 60,
   },
   callbacks: {
-    async jwt({ token, user, session}) {
+    async jwt({ token, user}) {
       if (user) {
         token.id = user.id;
       }
@@ -51,7 +51,6 @@ const handler = NextAuth({
     async session({ session, token }) {
       return {
         ...session,
-        foo: 'bar',
       }
     },
   },

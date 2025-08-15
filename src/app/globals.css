@@ -45,6 +45,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --breakpoint-phone: 0px;
+  --breakpoint-tablet: 48rem;
+  --breakpoint-desktop: 80rem;
 }
 
 :root {

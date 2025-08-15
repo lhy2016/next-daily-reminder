@@ -1,11 +1,8 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useState, useEffect, FC} from "react";
+import { useState, useEffect, FC, Fragment} from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import { LoginForm } from "./LoginForm";
 import { SignupForm } from "./SignupForm";
 
@@ -31,10 +28,12 @@ export const AuthTabs: FC<{}> = () => {
   };
 
   return (
+    <Fragment>
+    <h1 className="text-4xl mb-6"> {activeTab === "signup" ? "We're glad to have you here" : "Welcome back" } </h1>
     <Tabs value={activeTab} onValueChange={handleTabChange} className="w-full max-w-md mx-auto">
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="signin">Login</TabsTrigger>
-        <TabsTrigger value="signup">Sign Up</TabsTrigger>
+        <TabsTrigger value="signin" className="cursor-pointer">Login</TabsTrigger>
+        <TabsTrigger value="signup" className="cursor-pointer">Sign Up</TabsTrigger>
       </TabsList>
 
       {/* Login Form */}
@@ -47,5 +46,6 @@ export const AuthTabs: FC<{}> = () => {
         <SignupForm />
       </TabsContent>
     </Tabs>
+    </Fragment>
   );
 }
